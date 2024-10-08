@@ -1,0 +1,21 @@
+/* Style for the injected button */
+.h1b.info-class {
+  display: inline-block;
+  background-color: #0073b1; /* LinkedIn's blue */
+  color: rgb(0, 0, 0);
+  font-size: 14px;
+  font-style: "Helvetica Neue";
+  padding: 10px 20px;
+  border-style: dashed;
+  margin-left: 10px;
+  border: 2px solid #0073b1;
+  border-radius: 25px;
+  cursor: pointer;
+  font-family: Arial, sans-serif;
+  box-shadow: 0px 2px 5px rgba(199, 28, 28, 0.2);
+  transition: background-color 0.3s ease;
+}
+
+.h1b.info-class:hover {
+  background-color: #005582; /* Darker shade on hover */
+}

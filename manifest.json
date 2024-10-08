@@ -1,0 +1,17 @@
+{
+  "manifest_version": 3,
+  "name": "HSpons.com",
+  "description": "H1B Sponsorship and job recommendations",
+  "version": "1.0.0",
+  "content_scripts": [
+    {
+      "matches": [
+        "https://*.linkedin.com/jobs/*",
+        "https://*.indeed.com/*",
+        "https://*.glassdoor.com/*"
+      ],
+      "js": ["extension.js"],
+      "css": ["style.css"]
+    }
+  ]
+}
