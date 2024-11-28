@@ -24,14 +24,31 @@
 //     companyElement.parentNode.insertBefore(button, companyElement.nextSibling);
 //   }
 // });
+
 (function () {
   "use strict";
-
   function getCompanyName() {
     const companyElement = document.querySelector(
       ".job-details-jobs-unified-top-card__company-name a"
     );
     return companyElement ? companyElement.textContent.trim() : null;
+  }
+
+  async function fetchH1BInfo(companyName) {
+    const baseUrl = `http://localhost:8080`; // Update to your Node.js server's URL and port
+    try {
+      const response = await fetch(
+        `${baseUrl}/${encodeURIComponent(companyName)}`
+      );
+      if (!response.ok) {
+        throw new Error(`HTTP error! Status: ${response.status}`);
+      }
+      const data = await response.json();
+      return data;
+    } catch (error) {
+      console.error("Error fetching H1B info:", error);
+      return null;
+    }
   }
 
   function addButton() {
@@ -57,10 +74,23 @@
           font-size: 14px;
       `;
 
-    button.addEventListener("click", function () {
+    button.addEventListener("click", async function () {
       const companyName = getCompanyName();
       if (companyName) {
-        alert("Company Name: " + companyName);
+        alert(`Fetching H1B Info for: ${companyName}`);
+        const data = await fetchH1BInfo(companyName);
+
+        if (data) {
+          console.log("H1b data " + data);
+        }
+
+        window.open(
+          `http://localhost:8080/${companyName}`,
+          "H1b Data Analysis",
+          "width = 400",
+          "height = 400"
+        );
+
         // Here you can add code to send the company name to your SQL server
       } else {
         alert("Company name not found");
